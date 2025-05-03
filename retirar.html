@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirar - Ematec</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('/img/282a6190869adcc468dc6c1365a6a37d.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      margin-top: 50px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .info {
+      margin-bottom: 15px;
+      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .saldo {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Solicitar Retirada</h2>
+
+    <img src="/img/impressora a lazer.png" alt="Retirada" />
+
+    <div class="info">
+      <p>🕘 Horário de retirada: das <strong>9h até 16h</strong>.</p>
+      <p>💰 Valor mínimo de retirada: <strong>2.000 Kz</strong>.</p>
+    </div>
+
+    <div class="saldo" id="saldo">Saldo disponível: <strong>12.000 Kz</strong></div>
+
+    <input type="number" id="valor" placeholder="Insira o valor a retirar" />
+
+    <button onclick="retirar()">Continuar</button>
+
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+
+  <script>
+   // Define saldo inicial apenas se não existir ainda
+if (localStorage.getItem("saldo") === null) {
+  localStorage.setItem("saldo", "30000");
+}
+// Simulação de saldo disponível
+
+    function retirar() {
+      const valor = parseInt(document.getElementById("valor").value);
+      const mensagem = document.getElementById("mensagem");
+
+      if (isNaN(valor)) {
+        mensagem.style.color = "yellow";
+        mensagem.innerText = "⚠️ Insira um valor válido.";
+        return;
+      }
+
+      if (valor < 2000) {
+        mensagem.style.color = "red";
+        mensagem.innerText = "Erro: o valor mínimo de retirada é 2.000 Kz.";
+      } else if (valor > saldo) {
+        mensagem.style.color = "red";
+        mensagem.innerText = "Erro: saldo insuficiente.";
+      } else {
+        saldo -= valor;
+        document.getElementById("saldo").innerHTML = "Saldo disponível: <strong>" + saldo + " Kz</strong>";
+        mensagem.style.color = "lightgreen";
+        mensagem.innerText = "✅ Levantamento feito com êxito!";
+      }
+    }
+  </script>
+</body>
+</html>

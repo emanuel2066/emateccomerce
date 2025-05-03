@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Ematec</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('/img/hp-deskjet-2720-.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .logo img {
+      width: 120px;
+    }
+
+    .lang-select {
+      background: white;
+      color: black;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      width: 300px;
+      margin: 100px auto;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      border: none;
+      padding: 10px;
+      color: white;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      color: #00ffff;
+      display: block;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/img/NOVO LOGO.png" alt="Logo Ematec" />
+    </div>
+    <select class="lang-select">
+      <option value="pt">PT</option>
+      <option value="en">EN</option>
+      <option value="en">FR</option>
+      <option value="en">SP</option>
+    </select>
+  </header>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="home.html">
+      <input type="text" placeholder="Contacto" required />
+      <input type="password" placeholder="Senha" required />
+      <button type="submit">Login</button>
+    </form>
+    <a href="#">Esqueci a senha</a>
+    <a href="cadastro.html">Faça login aqui</a>
+  </div>
+</body>
+</html>

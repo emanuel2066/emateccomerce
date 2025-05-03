@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ematec - Início</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('/img/282a6190869adcc468dc6c1365a6a37d.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .logo img {
+      width: 120px;
+    }
+
+    .banner {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .banner h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      font-size: 18px;
+    }
+
+    .carrossel {
+      width: 80%;
+      height: 300px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 3px solid white;
+    }
+
+    .carrossel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .carrossel img.active {
+      display: block;
+    }
+
+    .info {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #000;
+  padding: 20px;
+  margin: 40px auto;
+  border-radius: 10px;
+  max-width: 800px;
+  text-align: left;
+}
+
+.info h2 {
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.info ul {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.info li {
+  margin-bottom: 10px;
+}
+
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    footer a:hover {
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/img/NOVO LOGO.png" alt="Logo Ematec">
+    </div>
+  </header>
+
+  <div class="banner">
+    <h1>Bem-vindo à Ematec</h1>
+    <p>Comece a explorar agora mesmo.</p>
+  </div>
+
+  <div class="carrossel">
+    <img src="/img/HP lança o estado da arte em impressora fine art.jpg" class="active" alt="Imagem 1">
+    <img src="/img/hp 2.jpg" alt="Imagem 2">
+    <img src="/img/impressora a lazer.png" alt="Imagem 3">
+    <img src="/img/282a6190869adcc468dc6c1365a6a37d.jpg" alt="Imagem 3">
+  </div>
+
+  <section class="info">
+    <h2>Sobre a Ematec</h2>
+    <p>
+      A <strong>Ematec</strong> é uma plataforma digital de investimentos criada para ajudar os angolanos a alcançarem independência financeira.
+      Aqui, você investe em produtos reais que geram <strong>lucros diários</strong> de forma simples, segura e totalmente online.
+    </p>
+    <p>
+      Cada produto oferece um ciclo com rendimento fixo, e você acompanha seus investimentos diretamente no seu painel.
+      Nossa missão é oferecer <strong>transparência, praticidade e resultados reais</strong> para todos os nossos usuários.
+    </p>
+    <ul>
+      <li>📈 Investimentos com retorno diário.</li>
+      <li>🔒 Segurança e transparência em cada operação.</li>
+      <li>👥 Sistema de equipe e convite para ganhos extras.</li>
+      <li>📱 Suporte via WhatsApp e Telegram.</li>
+    </ul>
+  </section>
+  
+  <footer>
+    <a href="home.html">Início</a>
+    <a href="investimentos.html">Investimento</a>
+    <a href="equipa.html">Equipa</a>
+    <a href="utilizador.html">Utilizador</a>
+  </footer>
+
+  <script>
+    // Carrossel automático
+    const imagens = document.querySelectorAll('.carrossel img');
+    let index = 0;
+
+    setInterval(() => {
+      imagens[index].classList.remove('active');
+      index = (index + 1) % imagens.length;
+      imagens[index].classList.add('active');
+    }, 3000);
+    
+  </script>
+</body>
+</html>
