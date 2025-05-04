@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
@@ -35,7 +35,8 @@
       margin-bottom: 10px;
     }
 
-    .banner p {
+    .banner p,
+    #saldo {
       font-size: 18px;
     }
 
@@ -60,29 +61,28 @@
     }
 
     .info {
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #000;
-  padding: 20px;
-  margin: 40px auto;
-  border-radius: 10px;
-  max-width: 800px;
-  text-align: left;
-}
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #000;
+      padding: 20px;
+      margin: 40px auto;
+      border-radius: 10px;
+      max-width: 800px;
+      text-align: left;
+    }
 
-.info h2 {
-  margin-bottom: 15px;
-  color: #222;
-}
+    .info h2 {
+      margin-bottom: 15px;
+      color: #222;
+    }
 
-.info ul {
-  margin-top: 15px;
-  padding-left: 20px;
-}
+    .info ul {
+      margin-top: 15px;
+      padding-left: 20px;
+    }
 
-.info li {
-  margin-bottom: 10px;
-}
-
+    .info li {
+      margin-bottom: 10px;
+    }
 
     footer {
       position: fixed;
@@ -118,14 +118,14 @@
 
   <div class="banner">
     <h1>Bem-vindo à Ematec</h1>
-    <p>Comece a explorar agora mesmo.</p>
+    <p id="saldo">Carregando saldo...</p>
   </div>
 
   <div class="carrossel">
     <img src="./img/HP lança o estado da arte em impressora fine art.jpg" class="active" alt="Imagem 1">
     <img src="./img/hp 2.jpg" alt="Imagem 2">
     <img src="./img/impressora a lazer.png" alt="Imagem 3">
-    <img src="./img/282a6190869adcc468dc6c1365a6a37d.jpg" alt="Imagem 3">
+    <img src="./img/282a6190869adcc468dc6c1365a6a37d.jpg" alt="Imagem 4">
   </div>
 
   <section class="info">
@@ -153,18 +153,50 @@
     <a href="utilizador.html">Utilizador</a>
   </footer>
 
+  <!-- Carrossel automático -->
   <script>
-    // Carrossel automático
     const imagens = document.querySelectorAll('.carrossel img');
     let index = 0;
-
     setInterval(() => {
       imagens[index].classList.remove('active');
       index = (index + 1) % imagens.length;
       imagens[index].classList.add('active');
     }, 3000);
-    
+  </script>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+  <!-- Firebase Inicialização e lógica -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHOR80ASMRggAd8Lv3lLzXFAR7Mwz2rL0",
+      authDomain: "ematecinvestimentos.firebaseapp.com",
+      projectId: "ematecinvestimentos",
+      storageBucket: "ematecinvestimentos.firebasestorage.app",
+      messagingSenderId: "447867006613",
+      appId: "1:447867006613:web:bbb04d69ead5c388d3759c"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        db.collection('usuarios').doc(user.uid).get().then(doc => {
+          if (doc.exists) {
+            const dados = doc.data();
+            document.querySelector('.banner h1').textContent = `Bem-vindo, ${dados.nome || 'Usuário'}!`;
+            document.getElementById('saldo').textContent = `Saldo: ${dados.saldo || 0} KZ`;
+          }
+        });
+      } else {
+        window.location.href = "index.html"; // redireciona se não estiver logado
+      }
+    });
   </script>
 </body>
 </html>
-
