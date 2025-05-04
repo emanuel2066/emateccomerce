@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
@@ -90,20 +90,61 @@
     <select class="lang-select">
       <option value="pt">PT</option>
       <option value="en">EN</option>
-      <option value="en">FR</option>
-      <option value="en">SP</option>
+      <option value="fr">FR</option>
+      <option value="es">ES</option>
     </select>
   </header>
 
   <div class="login-container">
     <h2>Login</h2>
-    <form action="home.html">
-      <input type="text" placeholder="Contacto" required />
-      <input type="password" placeholder="Senha" required />
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="Email ou contacto" required />
+      <input type="password" id="senha" placeholder="Senha" required />
       <button type="submit">Login</button>
     </form>
     <a href="#">Esqueci a senha</a>
     <a href="cadastro.html">Se inscreva aqui</a>
   </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Importações modernas do Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAHOR80ASMRggAd8Lv3lLzXFAR7Mwz2rL0",
+      authDomain: "ematecinvestimentos.firebaseapp.com",
+      projectId: "ematecinvestimentos",
+      storageBucket: "ematecinvestimentos.firebasestorage.app",
+      messagingSenderId: "447867006613",
+      appId: "1:447867006613:web:bbb04d69ead5c388d3759c"
+    };
+
+    // Inicialização
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          alert("Login bem-sucedido!");
+          window.location.href = "home.html"; // redireciona para a página do usuário
+        })
+        .catch((error) => {
+          alert("Erro ao fazer login: " + error.message);
+        });
+    });
+  </script>
 </body>
 </html>
